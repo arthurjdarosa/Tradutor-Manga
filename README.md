@@ -36,4 +36,22 @@ bbox_captura: Dicionario que guarda as coordenadas da área da tela no formato e
 
 # Função de processamento (processar_recorte)
 
+cv2.cvtColor(...,cv2.COLOR_BGRA2GRAY): Transforma a imagem colorida em escala de cinza para facilitar a leitura do OCR
+
+1.Upscale(cv2.resize): Aumenta a imagem de 1.5(fx=1.5, fy=1.5) para dar mais nitidez e detalhe as letras
+
+2.Borda(cv2.copyMakeBorder): Adiciona uma margem de 20 pixels brancos ao redor da imagem para garantir que o Tesseract não corte textos colados no canto
+
+3.Binarização Otsu(cv2.threshold): Transforma a imagem em preto e branco puro. O texto vira preto e o fundo vira branco, gerando contraste maximo
+
+config_tesseract(--oem 3 --psm 3): Configuração do Tesseract (PSM 3 analisa o quadro como uma pagina completa, otimo para ler mangas)
+
+Limpeza com RegEx(re.sub):Remove caracteres inuteis (como barras e acentos soltos) e ignora linhas que não contêm palavras reais
+
+os.system('cls'): Limpa o terminal antes de exibir a nova leitura 
+
+argostranslate...translate: Pega o texto limpo em ingles e traduz direto para o portugues exibindo tudo no terminal
+
+# Loop de monitoramento Automatico (loop_monitoramento)
+
 
