@@ -54,4 +54,29 @@ argostranslate...translate: Pega o texto limpo em ingles e traduz direto para o 
 
 # Loop de monitoramento Automatico (loop_monitoramento)
 
+with mss.mss() as sct: Abre a ferramenta de captura de tela de alta velocidade
+
+cv2.absdiff(frame_gray, ultimo_frame_gray): Compara o print atual com o print anterior pixel por pixel e calcula a diferença matematica entre os dois
+
+if mudanca > 4.0: Se a média de diferença entre os pixels for maior que 4.0, o codigo entende que a tela foi rolada/movimentada e dai ele espera parar para poder traduzir o texto novamente, se por acaso você colocar o mouse por cima provavelmente essa subtração de pixels não vai ser superior que 4.0 e não vai atualizar a tradução por exemplo
+
+time.sleep(0.35): Espera 0.35 segundos para dar tempo da imagem parar de se mexer após a rolagem antes de tirar o print final para a tradução
+
+# Interface Gráfica e Execução Paralela (Tkinter & Threads)
+
+root: tk.Tk(): Cria a janela da interface grafica.
+
+root.overrideredirect(True): Esconde a barra de título padrão do Windows (aquela com botões de fechar, minimizar e o título).
+
+root.wm_attributes("-topmost", True): Força a janela a ficar sempre no topo, cobrindo qualquer leitor de PDF, navegador ou tela.
+
+root.wm_attributes("-transparentcolor", "black"): Deixa o fundo preto da janela transparente, fazendo com que apenas a linha vermelha apareça na tela.
+
+canvas.create_rectangle(...): Desenha o retângulo vermelho de 3 pixels nas bordas da janela.
+
+canvas.bind("",...): Atalho que fecha a aplicação se você clicar com o Botão Direito a linha vermelha.
+
+threading.Thread(tanget=loop_monitoramento,daemon=True): Roda o monitoramento e o OCR em uma thread paralela no processador para não travar a interface gráfica. O daemon=True garante que a thread seja encerrada ao fechar o app.
+
+root.mainloop(): Inicia a janela do Tkinter e mantém o aplicativo ativo na tela.
 
