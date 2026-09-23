@@ -11,15 +11,6 @@ from PIL import Image
 import pytesseract
 import argostranslate.translate
 
-# Força resolução real no Windows para a janela não encolher
-try:
-    ctypes.windll.shcore.SetProcessDpiAwareness(2)
-except Exception:
-    try:
-        ctypes.windll.user32.SetProcessDPIAware()
-    except Exception:
-        pass
-
 # Caminho do executável do Tesseract
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
